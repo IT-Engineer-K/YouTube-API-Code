@@ -5,19 +5,20 @@
     <title>YouTubeのタイトルを取得するコード</title>
   </head>
   <body>
-    <pre>from janome.tokenizer import Tokenizer<br>
-    from apiclient.discovery import build<br>
-    YOUTUBE_API_KEY = 'ここに取得したAPIKEYを貼り付けます。'<br>
-    youtube = build('youtube', 'v3', developerKey=YOUTUBE_API_KEY)<br>
-    search_response = youtube.search().list(<br>
-    part='snippet',<br>
-    q='パソコン 神業',#ここに検索キーワード入力<br>
-    order='viewCount',<br>
-    type='video',<br>
-    maxResults = 50<br>
-    ).execute()<br>
-    for i in range(50):<br>
-    print(search_response["items"][i]["snippet"]["title"])<br>
+    <pre>from apiclient.discovery import build
+YOUTUBE_API_KEY = 'ここに取得したAPIキーを貼り付けます。'
+youtube = build('youtube', 'v3', developerKey=YOUTUBE_API_KEY)
+KeyWords = ['才能','コンピューター','神回']#こんな感じで検索キーワードを20個とか30個くらい記入します。※この時キーワードを''で囲み、その間を,で区切ります。
+for k in range(len(KeyWords)):
+    search_response = youtube.search().list(
+        part='snippet',
+        q=KeyWords[k],
+        order='viewCount',
+        type='video',
+        maxResults = 50
+        ).execute()
+    for i in range(50):
+        print(search_response["items"][i]["snippet"]["title"])
     </pre>
   </body>
 </html>
