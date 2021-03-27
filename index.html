@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang = "ja">
+  <head>
+    <meta charset = "utf-8">
+    <title>JavaScript</title>
+  </head>
+  <body>
+    <pre>from janome.tokenizer import Tokenizer<br>
+    from apiclient.discovery import build<br>
+    YOUTUBE_API_KEY = 'AIzaSyDZ8UkX7IMek9AIH8VKs-n9tWXeMxq3lHk'<br>
+    youtube = build('youtube', 'v3', developerKey=YOUTUBE_API_KEY)<br>
+    search_response = youtube.search().list(<br>
+    part='snippet',<br>
+    q='パソコン 神業',#ここに検索キーワード入力<br>
+    order='viewCount',<br>
+    type='video',<br>
+    maxResults = 50<br>
+    ).execute()<br>
+    for i in range(50):<br>
+    print(search_response["items"][i]["snippet"]["title"])<br>
+    </pre>
+  </body>
+</html>
